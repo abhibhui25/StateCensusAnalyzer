@@ -39,4 +39,15 @@ public class StateCensusTest {
         }
     }
 
+    @Test
+    public void GivenStateCensusCSVFile_DelimiterIncorrect_ReturnsCensusException() throws IOException {
+        try {
+            int count = StateCensusAnalyser.openCsvBuilder(STATECENSUS_CSVFILE, StateCensusAnalyzer.class);
+        } catch (StateCensusException e) {
+            e.printStackTrace();
+            Assert.assertEquals(StateCensusException.CensusExceptionType.DELIMITER_ISSUE, e.type);
+
+        }
+    }
+
 }
