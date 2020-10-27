@@ -18,4 +18,15 @@ public class StateCensusTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void GivenStateCensusCsvFile_IfDoesntExist_ShouldThrowCensusAnalyserException() throws IOException {
+        try {
+            int count = StateCensusAnalyser.openCsvBuilder(WRONG_FILE, StateCensusAnalyzer.class);
+        } catch (StateCensusException e) {
+            e.printStackTrace();
+            Assert.assertEquals(StateCensusException.CensusExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
+
 }
